@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-
 import { db, storage } from './firebase';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import LoadingSpinner from './Loading-spinner';  // Import the spinner component
 
 function App() {
     const [tiles, setTiles] = useState([]);
     const [message, setMessage] = useState('');
     const [photo, setPhoto] = useState(null);
-    const [loading, setLoading] = useState(false); // State for loading status
+    const [loading, setLoading] = useState(true);  // Set loading to true initially
 
     // Fetch messages on mount
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'tiles'), (snapshot) => {
             const fetchedTiles = snapshot.docs.map((doc) => doc.data());
             setTiles(fetchedTiles);
+            setLoading(false);  // Set loading to false when data is fetched
         });
 
         return () => unsubscribe(); // Cleanup on unmount
@@ -26,7 +27,7 @@ function App() {
         e.preventDefault();
         if (!message || !photo) return alert('Please add both a message and a photo!');
 
-        setLoading(true);
+        setLoading(true);  // Set loading to true when uploading
 
         try {
             // Upload photo to Firebase Storage
@@ -43,7 +44,7 @@ function App() {
             setPhoto(null);
         } catch (error) {
             console.error('Error uploading photo or adding message:', error);
-            alert('An error occurred. Please try again.');
+            alert('An error occurred. Upload will only be active starting Christmas Eve.');
         } finally {
             setLoading(false); // Set loading to false when done
         }
@@ -51,6 +52,8 @@ function App() {
 
     return (
         <>
+            {loading && <LoadingSpinner />}
+
             <div className="flex justify-center items-center gap-2">
                 <img src="/pic1.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic1" />
                 <img src="/pic2.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic2" />
@@ -59,9 +62,9 @@ function App() {
             </div>
             <div className="bg-green-900 flex flex-col w-full items-center p-6 px-8 rounded-lg shadow-lg mt-2">
                 <h1 className="text-4xl font-bold text-white mb-6">
-                    And Christmas greetings to you too!!!<br />Lots of festive love and cheer,<br /> Zak xxx
+                    And Christmas greetings to you too!!!<br /><br />Well done for saving Christmas you puzzle fiends.<br /><br />Lots of festive love and cheer,<br /> Zak xxx
                 </h1>
-                <h1 className="text-2xl font-bold text-white mb-6">p.s. add a Christmas message to the wall!</h1>
+                <h1 className="text-2xl font-bold text-white mb-6">p.s. pls add a Christmas message to the wall below!</h1>
 
                 <form
                     onSubmit={handleSubmit}

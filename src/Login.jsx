@@ -18,8 +18,10 @@ function Login() {
         const password = document.getElementById("password").value;
         const password_lower = password.toLowerCase()
 
+        const success1 = import.meta.env.VITE_PASSWORD_1
+        const success2 = import.meta.env.VITE_PASSWORD_2
 
-        if (password_lower === "christmas greetings" | "christmas island greetings") {
+        if (password_lower == success1 || password_lower == success2) {
             sessionStorage.setItem("isVerified", "true")
             setIsVerified(true);
         } else {
@@ -44,6 +46,7 @@ function Login() {
                                         name="password"
                                         placeholder="Enter password"
                                         autoComplete="off"
+                                        autoCorrect="off"
                                         className="mb-4 w-full p-3 rounded-lg border-2 text-gray-800 border-white focus:outline-none focus:ring-2 focus:ring-white"
                                     />
                                     <button
