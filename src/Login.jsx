@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 import App from './App';
 import DownloadFile from './Download-file';
 
@@ -10,30 +10,32 @@ function Login() {
     });
     const [errorMessage, setErrorMessage] = useState(() => {
         const tried = sessionStorage.getItem("hasTried");
-        return tried
+        return tried;
     });
 
-    const checkPw = () => {
-        // gets the current input value
+    const checkPw = (event) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the current input value
         const password = document.getElementById("password").value;
-        const password_lower = password.toLowerCase()
+        const password_lower = password.toLowerCase();
 
-        const success1 = import.meta.env.VITE_PASSWORD_1
-        const success2 = import.meta.env.VITE_PASSWORD_2
+        const success1 = import.meta.env.VITE_PASSWORD_1;
+        const success2 = import.meta.env.VITE_PASSWORD_2;
 
-        if (password_lower == success1 || password_lower == success2) {
-            sessionStorage.setItem("isVerified", "true")
+        if (password_lower === success1 || password_lower === success2) {
+            sessionStorage.setItem("isVerified", "true");
             setIsVerified(true);
         } else {
             sessionStorage.setItem("hasTried", "⛔ Sorry, that code doesn't seem to be working ⛔");
+            setErrorMessage("⛔ Sorry, that code doesn't seem to be working ⛔"); // Set error message for incorrect password
         }
     };
 
     return (
         <>
             {isVerified ? <App />
-                :
-                (
+                : (
                     <>
                         <div className="flex flex-col h-screen items-center justify-center">
                             <div className="flex">
@@ -47,9 +49,11 @@ function Login() {
                                         placeholder="Enter password"
                                         autoComplete="off"
                                         autoCorrect="off"
+                                        spellCheck="false"
                                         className="mb-4 w-full p-3 rounded-lg border-2 text-gray-800 border-white focus:outline-none focus:ring-2 focus:ring-white"
                                     />
                                     <button
+                                        type="submit" // Explicitly set the button to submit the form
                                         className="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transform hover:scale-105 transition duration-200"
                                     >
                                         🎄 Save Christmas 🎅
@@ -57,7 +61,9 @@ function Login() {
                                 </form>
                             </div>
                             <div className="flex mt-4" style={{ minHeight: "4rem" }}>
-                                <p className={errorMessage ? "mb-4 w-full p-3 rounded-lg bg-green-700" : ""}>{errorMessage}</p>
+                                <p className={errorMessage ? "mb-4 w-full p-3 rounded-lg bg-green-700" : ""}>
+                                    {errorMessage}
+                                </p>
                             </div>
                             <DownloadFile fileName="puzzle_crackers_digital.pdf" buttonText="🧩 Click here to download a digital copy of the puzzle 🧩" />
                             <DownloadFile fileName="puzzle_crackers_solutions.pdf" buttonText="🆘 Need help? Click here to download solutions 🆘" />
@@ -66,7 +72,7 @@ function Login() {
                 )
             }
         </>
-    )
+    );
 }
 
-export default Login
+export default Login;
