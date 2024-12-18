@@ -68,7 +68,7 @@ function App() {
 
                 <form
                     onSubmit={handleSubmit}
-                    className="bg-green-700 px-6 py-4 shadow-md rounded-lg flex flex-col items-center gap-2 w-full max-w-md text-2xl"
+                    className="bg-green-700 px-6 py-4 shadow-md rounded-lg flex flex-col items-center gap-2 w-full max-w-2xl text-2xl"
                 >
                     <p className='px-2 w-full text-left font-bold'>Leave a message:</p>
                     <input
