@@ -55,10 +55,10 @@ function App() {
             {loading && <LoadingSpinner />}
 
             <div className="flex justify-center items-center gap-2">
-                <img src="save-our-christmas/pic1.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic1" />
-                <img src="save-our-christmas/pic2.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic2" />
-                <img src="save-our-christmas/pic3.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic3" />
-                <img src="save-our-christmas/pic4.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic4" />
+                <img src="/save-our-christmas/pic1.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic1" />
+                <img src="/save-our-christmas/pic2.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic2" />
+                <img src="/save-our-christmas/pic3.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic3" />
+                <img src="/save-our-christmas/pic4.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic4" />
             </div>
             <div className="bg-green-900 flex flex-col w-full items-center p-6 px-8 rounded-lg shadow-lg mt-2">
                 <h1 className="text-4xl font-bold text-white mb-6">
