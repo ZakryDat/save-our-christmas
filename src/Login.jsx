@@ -50,11 +50,11 @@ function Login() {
                                         autoComplete="off"
                                         autoCorrect="off"
                                         spellCheck="false"
-                                        className="mb-4 w-full p-3 rounded-lg border-2 text-gray-800 border-white focus:outline-none focus:ring-2 focus:ring-white"
+                                        className="mb-4 w-full p-3 rounded-lg border-2 text-gray-800 text-2xl border-white focus:outline-none focus:ring-2 focus:ring-white"
                                     />
                                     <button
                                         type="submit" // Explicitly set the button to submit the form
-                                        className="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transform hover:scale-105 transition duration-200"
+                                        className="bg-green-500 text-white text-2xl font-bold py-2 px-4 rounded-full hover:bg-green-600 transform hover:scale-105 transition duration-200"
                                     >
                                         🎄 Save Christmas 🎅
                                     </button>

@@ -61,14 +61,14 @@ function App() {
                 <img src="/save-our-christmas/pic4.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic4" />
             </div>
             <div className="bg-green-900 flex flex-col w-full items-center p-6 px-8 rounded-lg shadow-lg mt-2">
-                <h1 className="text-4xl font-bold text-white mb-6">
+                <h1 className="text-5xl font-bold text-white mb-6">
                     And Christmas greetings to you too!!!<br /><br />Well done for saving Christmas you puzzle fiends.<br /><br />Lots of festive love and cheer,<br /> Zak xxx
                 </h1>
-                <h1 className="text-2xl font-bold text-white mb-6">p.s. pls add a Christmas message to the wall below!</h1>
+                <h1 className="text-3xl font-bold text-white mb-6">p.s. pls add a Christmas message to the wall below!</h1>
 
                 <form
                     onSubmit={handleSubmit}
-                    className="bg-green-700 px-6 py-4 shadow-md rounded-lg flex flex-col items-center gap-2 w-full max-w-md"
+                    className="bg-green-700 px-6 py-4 shadow-md rounded-lg flex flex-col items-center gap-2 w-full max-w-md text-2xl"
                 >
                     <p className='px-2 w-full text-left font-bold'>Leave a message:</p>
                     <input
@@ -108,7 +108,7 @@ function App() {
                                 alt={`Uploaded ${index}`}
                                 className="w-full h-96 object-cover rounded-md"
                             />
-                            <p className="mt-4 text-sm text-gray-800">{tile.message}</p>
+                            <p className="mt-4 text-xl text-gray-800">{tile.message}</p>
                         </div>
                     ))}
                 </div>

@@ -27,7 +27,7 @@ const DownloadFile = ({ fileName, buttonText }) => {
                     href={downloadUrl}
                     target="_blank" // Opens in a new tab
                     rel="noopener noreferrer" // Security best practice for external links
-                    className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600"
+                    className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 text-2xl"
                 >
                     {buttonText}
                 </a>
