@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import App from './App';
+import DownloadFile from './Download-file';
 
 function Login() {
     const [isVerified, setIsVerified] = useState(() => {
@@ -15,9 +16,10 @@ function Login() {
     const checkPw = () => {
         // gets the current input value
         const password = document.getElementById("password").value;
+        const password_lower = password.toLowerCase()
 
 
-        if (password === "password") {
+        if (password_lower === "christmas greetings" | "christmas island greetings") {
             sessionStorage.setItem("isVerified", "true")
             setIsVerified(true);
         } else {
@@ -31,7 +33,7 @@ function Login() {
                 :
                 (
                     <>
-                        <div className="flex-col">
+                        <div className="flex flex-col h-screen items-center justify-center">
                             <div className="flex">
                                 <form
                                     onSubmit={checkPw}
@@ -42,7 +44,7 @@ function Login() {
                                         name="password"
                                         placeholder="Enter password"
                                         autoComplete="off"
-                                        className="mb-4 w-full p-3 rounded-lg border-2 border-white focus:outline-none focus:ring-2 focus:ring-white"
+                                        className="mb-4 w-full p-3 rounded-lg border-2 text-gray-800 border-white focus:outline-none focus:ring-2 focus:ring-white"
                                     />
                                     <button
                                         className="bg-green-500 text-white font-bold py-2 px-4 rounded-full hover:bg-green-600 transform hover:scale-105 transition duration-200"
@@ -54,6 +56,8 @@ function Login() {
                             <div className="flex mt-4" style={{ minHeight: "4rem" }}>
                                 <p className={errorMessage ? "mb-4 w-full p-3 rounded-lg bg-green-700" : ""}>{errorMessage}</p>
                             </div>
+                            <DownloadFile fileName="puzzle_crackers_digital.pdf" buttonText="🧩 Click here to download a digital copy of the puzzle 🧩" />
+                            <DownloadFile fileName="puzzle_crackers_solutions.pdf" buttonText="🆘 Need help? Click here to download solutions 🆘" />
                         </div>
                     </>
                 )

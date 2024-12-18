@@ -5,16 +5,16 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCofiv3sXW9EJoiZosN8nk0Fzp6wFCPkNs",
-  authDomain: "save-our-christmas.firebaseapp.com",
-  projectId: "save-our-christmas",
-  storageBucket: "save-our-christmas.firebasestorage.app",
-  messagingSenderId: "291728151017",
-  appId: "1:291728151017:web:a674fd27d9bd7ce454fb78"
-};
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
+  };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 
 // Firestore and Storage exports
 const db = getFirestore(app);

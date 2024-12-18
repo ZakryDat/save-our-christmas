@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 
 import { db, storage } from './firebase';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
@@ -9,6 +9,7 @@ function App() {
     const [tiles, setTiles] = useState([]);
     const [message, setMessage] = useState('');
     const [photo, setPhoto] = useState(null);
+    const [loading, setLoading] = useState(false); // State for loading status
 
     // Fetch messages on mount
     useEffect(() => {
@@ -23,32 +24,44 @@ function App() {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!message || !photo) return alert('Please provide both a message and a photo');
+        if (!message || !photo) return alert('Please add both a message and a photo!');
 
-        // Upload photo to Firebase Storage
-        const photoRef = ref(storage, `photos/${photo.name}`);
-        const snapshot = await uploadBytes(photoRef, photo);
-        const photoURL = await getDownloadURL(snapshot.ref);
+        setLoading(true);
 
-        // Add message and photo URL to Firestore
-        const newTile = { message, photoURL };
-        await addDoc(collection(db, 'tiles'), newTile);
+        try {
+            // Upload photo to Firebase Storage
+            const photoRef = ref(storage, `photos/${photo.name}`);
+            const snapshot = await uploadBytes(photoRef, photo);
+            const photoURL = await getDownloadURL(snapshot.ref);
 
-        // Reset form
-        setMessage('');
-        setPhoto(null);
+            // Add message and photo URL to Firestore
+            const newTile = { message, photoURL };
+            await addDoc(collection(db, 'tiles'), newTile);
+
+            // Reset form
+            setMessage('');
+            setPhoto(null);
+        } catch (error) {
+            console.error('Error uploading photo or adding message:', error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            setLoading(false); // Set loading to false when done
+        }
     };
 
     return (
         <>
-            <div className='relative my-2'>
-                <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold">
+            <div className="flex justify-center items-center gap-2">
+                <img src="/pic1.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic1" />
+                <img src="/pic2.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic2" />
+                <img src="/pic3.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic3" />
+                <img src="/pic4.jpeg" className="rounded-lg w-1/4 h-auto" alt="pic4" />
+            </div>
+            <div className="bg-green-900 flex flex-col w-full items-center p-6 px-8 rounded-lg shadow-lg mt-2">
+                <h1 className="text-4xl font-bold text-white mb-6">
                     And Christmas greetings to you too!!!<br />Lots of festive love and cheer,<br /> Zak xxx
                 </h1>
-                <img src="/zak.jpg" className='rounded-lg'></img>
-            </div>
-            <div className="bg-green-900 flex flex-col w-full items-center p-6 px-8 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold text-white mb-6">Add a Christmas message to the wall!</h1>
+                <h1 className="text-2xl font-bold text-white mb-6">p.s. add a Christmas message to the wall!</h1>
 
                 <form
                     onSubmit={handleSubmit}
@@ -60,7 +73,7 @@ function App() {
                         placeholder="Enter your message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        className="w-full p-2 border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+                        className="w-full p-2 border text-black border-white rounded-md focus:outline-none focus:ring-2 focus:ring-white"
                     />
                     <p className='px-2 w-full text-left font-bold'>And choose a photo (portrait works better):</p>
                     <input
@@ -71,9 +84,13 @@ function App() {
                     />
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white font-bold mt-2 px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                        disabled={loading} // Disable button when loading
+                        className={`font-bold mt-2 px-4 py-2 rounded-md transition ${loading
+                            ? 'bg-gray-400 cursor-not-allowed'
+                            : 'bg-blue-600 hover:bg-blue-700 text-white'
+                            }`}
                     >
-                        Add me to the wall!
+                        {loading ? 'Adding...' : 'Add me to the wall!'}
                     </button>
                 </form>
 
