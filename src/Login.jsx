@@ -38,8 +38,8 @@ function Login() {
                 : (
                     <>
                         <div className="flex flex-col h-screen items-center justify-center">
-                            <div className='flex text-2xl font-bold bg-green-800 text-white p-4 rounded-lg m-4'>⚠️ The magic portal to enter the code will go live on the 24th ⚠️<br />You can download the puzzles ahead of time below though</div>
-                            {/* <div className="flex">
+                            {/* <div className='flex text-2xl font-bold bg-green-800 text-white p-4 rounded-lg m-4'>⚠️ The magic portal to enter the code will go live on the 24th ⚠️<br />You can download the puzzles ahead of time below though</div> */}
+                            <div className="flex">
                                 <form
                                     onSubmit={checkPw}
                                     className="flex flex-col items-center bg-green-700 p-6 px-8 rounded-lg shadow-lg max-w-sm mx-auto"
@@ -65,7 +65,7 @@ function Login() {
                                 <p className={errorMessage ? "mb-4 w-full p-3 rounded-lg bg-green-700" : ""}>
                                     {errorMessage}
                                 </p>
-                            </div> */}
+                            </div>
                             <DownloadFile fileName="puzzle_crackers_digital.pdf" buttonText="🧩 Click here to download a digital copy of the puzzle 🧩" />
                             {/* <DownloadFile fileName="puzzle_crackers_solutions.pdf" buttonText="🆘 Need help? Click here to download solutions 🆘" /> */}
                         </div>
