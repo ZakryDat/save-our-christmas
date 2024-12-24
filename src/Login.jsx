@@ -67,7 +67,7 @@ function Login() {
                                 </p>
                             </div>
                             <DownloadFile fileName="puzzle_crackers_digital.pdf" buttonText="🧩 Click here to download a digital copy of the puzzle 🧩" />
-                            {/* <DownloadFile fileName="puzzle_crackers_solutions.pdf" buttonText="🆘 Need help? Click here to download solutions 🆘" /> */}
+                            <DownloadFile fileName="puzzle_crackers_solutions.pdf" buttonText="🆘 Need help? Click here to download solutions 🆘" />
                         </div>
                     </>
                 )

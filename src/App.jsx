@@ -44,7 +44,7 @@ function App() {
             setPhoto(null);
         } catch (error) {
             console.error('Error uploading photo or adding message:', error);
-            alert('An error occurred. Upload will only be active starting Christmas Eve.');
+            alert('An error occurred. Check your uploaded image is less than 10Mb. Otherwise if this error persists, please contact your elf service.');
         } finally {
             setLoading(false); // Set loading to false when done
         }
